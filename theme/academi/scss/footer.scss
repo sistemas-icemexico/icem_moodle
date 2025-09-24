@@ -7,7 +7,14 @@
 }
 #footer {
     a {
-        color: $secondary;
+        i {
+            color: $secondary;
+        }
+        > .media-icon i {
+            color: $white;
+            font-family: $font_0;
+            font-weight: $font_weight;
+        }
     }
     &.footer-image .footer-main {
         background-image: url($footerbgimg);
@@ -23,6 +30,9 @@
             top: 0;
             left: 0;
             z-index: -1;
+        }
+        &.footer-image a {
+            color: $white;
         }
         h2 {
             color: $white;
@@ -41,6 +51,9 @@
         padding: 30px 0 54px;
         position: relative;
         z-index: 0;
+        .container-fluid {
+            max-width: 1500px;
+        }
         h2 {
             font-weight: bold;
             line-height: 36px;
@@ -83,6 +96,9 @@
                         text-decoration: none;
                     }
                 }
+                a {
+                    padding-left: 0;
+                }
             }
         }
         .contact-info {
@@ -92,6 +108,9 @@
             }
         }
     }
+    .footer-content-popover .footer-section div {
+        color: initial;
+    }
 }
 #footer .footer-main .social-media {
     padding: 25px 0 0;
@@ -100,7 +119,6 @@
         color: $white;
     }
     ul {
-        text-align: center;
         list-style: none;
         padding: 0;
         margin: 0;
@@ -164,25 +182,31 @@
 #footer {
     .footer-bottom {
         background: $dark_grey;
-        padding: 20px 0 0;
+        padding: 10px 0;
         text-align: center;
         p {
-            padding-bottom: 20px;
+            padding-bottom: 5px;
             margin-bottom: 0;
             a {
                 color: $primary;
             }
         }
-        .footer-content-debugging {
-            padding-bottom: 0 !important;
+        a {
+            color: $primary;
+            &:hover,
+            &:focus,
+            &:active {
+                color: $secondary;
+            }
         }
     }
     button.btn-footer-popover,
     button.btn-footer-popover:hover,
     button.btn-footer-popover:focus,
     button.btn-footer-popover:active {
+        height: auto;
         color: $white;
-        background: $primary !important;
+        background: $primary;
     }
 }
 
@@ -202,12 +226,6 @@
     }
 }
 
-/* @media (min-width: 992px) {
-    body.pagelayout-frontpage #page.drawers.jumbotron-element .footer-popover {
-        margin-top: 210px;
-    }
-} */
-
 @media (max-width: 767px) {
     #footer {
         .footer-main {
@@ -226,6 +244,9 @@
         .footer-bottom {
             padding-right: 20px;
             padding-left: 20px;
+        }
+        .footer-content-popover .footer-section a {
+            color: $primary;
         }
     }
 }

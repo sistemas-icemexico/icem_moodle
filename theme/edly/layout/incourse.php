@@ -27,7 +27,6 @@ echo $OUTPUT->doctype();
 
 include($CFG->dirroot . '/theme/edly/inc/edly_themehandler.php');
 
-user_preference_allow_ajax_update('drawer-open-nav', PARAM_ALPHA);
 require_once($CFG->libdir . '/behat/lib.php');
 
 array_push($extraclasses, "edly_context_frontend");

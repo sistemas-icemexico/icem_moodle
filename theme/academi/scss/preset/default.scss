@@ -21,6 +21,39 @@ $font_0: fontawesome;
 // Final Import.
 @import "includes";
 
+// Preset CSS
+
+@keyframes morph {
+    0% {
+        border-radius: 40% 60% 60% 40% / 70% 30%;
+    }
+
+    to {
+        border-radius: 40% 60%;
+    }
+}
+
+@keyframes move {
+    0% {
+        offset-distance: 0%;
+    }
+    100% {
+        offset-distance: 10%;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0);
+    }
+    50% {
+        transform: rotate(.1turn);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}
+
 // PRESET Customization content.
 h1,
 h2,
@@ -39,6 +72,23 @@ h6 {
         font-weight: bold;
     }
 }
+
+/* Secondary navigation menu */
+.secondary-navigation .moremenu.navigation .nav-tabs .nav-item {
+    background-color: $wild_sand;
+    .nav-link {
+        &:before {
+            display: none;
+        }
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: $primary;
+        }
+    }
+}
+
+/* End of Secondary navigation menu */
 
 /* Site Features */
 .site-features.icon-block .custom-site-expo {
@@ -83,8 +133,10 @@ h6 {
         }
         .site-feature-body {
             text-align: left;
-            h6 {
+            h6,
+            h6 a {
                 color: $secondary;
+                font-weight: bold;
             }
         }
     }
@@ -105,6 +157,10 @@ h6 {
         z-index: 1;
     }
     .info {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        right: 20px;
         z-index: 1;
     }
 }
@@ -147,33 +203,67 @@ h6 {
             z-index: -1;
             animation: morph 15s linear infinite alternate, spin 20s linear infinite;
         }
-        img {
-            border-radius: 10px;
-        }
     }
 }
 /* End of Marketing Spot */
+
+/* Jumbotron */
+
+@media (max-width: 575px) {
+    .jumbotron-block .inner-wrap:hover:before {
+        height: 100%;
+        top: -30px;
+        right: -240px;
+    }
+}
+/* End of Jumbotron */
 
 /* Course category */
 .course_category_tree.frontpage-category-names .category {
     width: 48%;
     display: inline-block;
+    vertical-align: top;
     margin-right: 15px;
     > .info {
         .numberofcourse {
             width: 30px;
             height: 30px;
             line-height: 30px;
-            color: #fff;
+            color: $white;
             text-align: center;
-            background: #88b77b;
+            background: $primary;
             border-radius: 50%;
             padding: 0;
             margin-top: -5px;
             float: right;
         }
     }
+    .category {
+        width: 100%;
+    }
+    .subcategories .subcategories .category {
+        width: 100%;
+    }
 }
+
+@media (min-width: 992px) {
+    .course_category_tree.frontpage-category-names .category {
+        width: 45%;
+    }
+}
+
+@media (max-width: 991px) {
+    .course_category_tree.frontpage-category-names .category {
+        width: 45%;
+    }
+}
+
+@media (max-width: 575px) {
+    .course_category_tree.frontpage-category-names .category {
+        width: 100%;
+    }
+}
+
 /* End of Course category */
 
 /* Combo courses */
@@ -205,13 +295,20 @@ h6 {
     }
     > .content {
         border-radius: 5px;
-        background-color: $white;
         .coursebox {
             border: 0;
+            border-radius: 5px;
+            background-color: $white;
             .info .coursename {
                 margin-bottom: 0;
             }
         }
+    }
+}
+
+@media (max-width: 575px) {
+    #frontpage-category-combo .course_category_tree .category > .info > .categoryname:before {
+        margin-left: -5px;
     }
 }
 /* End of Combo courses */
@@ -219,9 +316,6 @@ h6 {
 /* Footer */
 #footer.footer-image {
     .foot-links ul li a:hover {
-        color: $white;
-    }
-    .contact-info a {
         color: $white;
     }
 }

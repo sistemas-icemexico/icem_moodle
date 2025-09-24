@@ -67,11 +67,13 @@ class helper {
         $slideoverlayval = theme_academi_get_setting('slideOverlay');
         $slideopacity = (!empty($slideoverlayval)) ? $this->get_hexa('#000000', $slideoverlayval) : 0.4;
         $footerbgoverlayval = theme_academi_get_setting('footerbgOverlay');
+
         $footerbgopacity = (!empty($footerbgoverlayval)) ? $this->get_hexa($primary, $footerbgoverlayval) : 0.4;
         $pagesizecustomval = theme_academi_get_setting('pagesizecustomval');
         $fontsize = theme_academi_get_setting('fontsize');
         $primary30 = $this->get_hexa($primary, '0.3');
         $secondary30 = $this->get_hexa($secondary, '0.3');
+        $primary50 = $this->get_hexa($primary, '0.5');
         $primary70 = $this->get_hexa($primary, '0.7');
         $secondary70 = $this->get_hexa($secondary, '0.7');
         $scss .= $primary ? '$primary:'.$primary.";\n" : "";
@@ -79,9 +81,11 @@ class helper {
         $scss .= $slideopacity ? '$url_1:'.$slideopacity.";\n" : "";
         $scss .= $pagesizecustomval ? '$custom-container:'.$pagesizecustomval."px;\n" : "";
         $scss .= $fontsize ? '$fontsize:'.$fontsize. "px;" : "";
+        $scss .= $footerbgopacity ? '$footerbgopacity:'.$footerbgopacity.";\n" : "";
+
         if (!empty($primary)) {
-            $scss .= $footerbgopacity ? '$footerbgopacity:'.$footerbgopacity.";\n" : "";
             $scss .= $primary30 ? '$primary_30:'.$primary30.";\n" : "";
+            $scss .= $primary50 ? '$primary_50:'.$primary50.";\n" : "";
             $scss .= $primary70 ? '$primary_70:'.$primary70.";\n" : "";
         }
         if (!empty($secondary)) {
@@ -111,34 +115,6 @@ class helper {
     }
 
     /**
-     * Footer Info links.
-     *
-     * @return string $content
-     */
-    public function footer_infolink() {
-        $infolink = theme_academi_get_setting('infolink');
-        $content = "";
-        $infosettings = explode("\n", $infolink);
-        foreach ($infosettings as $key => $settingval) {
-
-            $expset = explode("|", $settingval);
-            if (isset($expset[1])) {
-                list($ltxt, $lurl) = $expset;
-            }
-
-            if (isset($ltxt) != '' || isset($lurl) != '') {
-                $ltxt = trim($ltxt);
-                $lurl = trim($lurl);
-            }
-            if (empty($ltxt)) {
-                continue;
-            }
-            $content .= '<li><a href="'.$lurl.'" target="_blank">'.$ltxt.'</a></li>';
-        }
-        return $content;
-    }
-
-    /**
      * Fetch the hide course ids.
      *
      * @return array
@@ -162,7 +138,7 @@ class helper {
      * @param string $text
      * @return string
      */
-    public function strip_html_tags( $text ) {
+    public function strip_html_tags($text) {
         $text = preg_replace(
             [
                 // Remove invisible content.
